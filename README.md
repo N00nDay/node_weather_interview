@@ -7,7 +7,7 @@ Project will utilize the following resources:
 * Use Heroku to host your app at https://www.heroku.com/home
 * Use MongoDB to host your data at https://www.mongodb.com/cloud/atlas 
 
-All routes below indicated with `^` are authenticated routes and need to validate the authorization header before returning any data or return a 401 response. All routes should return an appropriate response status.
+All routes below indicated with `^` are authenticated routes and need to validate the authorization header before returning any data or return a 401 response. All routes should return an appropriate response status. All routes should have testing in place utilizing Jest or Mocha.
 
 Project should include routes that provide the following:
 1. Ability to search weather by location using city or zip code
