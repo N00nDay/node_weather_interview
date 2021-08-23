@@ -89,14 +89,3 @@ Project should include routes that provide the following:
 10. Ability to view saved locations [Need data structure]
 11. Ability to delete saved location [Need data structure]
 12. Ability to delete account
-
-Above routes should accept the following JSON:
-1.  
-```json
-{
-  "city": String
-  "zipCode" int
-}
-```
-
-Above routes should return the following JSON:
