@@ -7,9 +7,10 @@ Project will utilize the following resources:
 * Use Heroku to host your app at https://www.heroku.com/home
 * Use MongoDB to host your data at https://www.mongodb.com/cloud/atlas 
 
+All routes below indicated with `^` are authenticated routes and need to validate the authorization header before returning any data or return a 401 response. All routes should return an appropriate response status.
+
 Project should include routes that provide the following:
 1. Ability to search weather by location using city or zip code
-
    - Route should accept the following JSON:
     ```json
     {
@@ -41,7 +42,6 @@ Project should include routes that provide the following:
     }
     ```
 2. Ability to create an account
-
     - Route should accept the following JSON:
     ```json
     {
@@ -50,7 +50,21 @@ Project should include routes that provide the following:
     }
     ```
     - Route should validate the email and password
-    - Route does note require return data
+    - Route should return the following JSON:
+    ```json
+    {
+      "token": String,
+      "locations": [
+        {
+          "city": String,
+          "state": String,
+          "zipCode": int,
+          "lat": double,
+          "lng": double,
+        }
+      ],
+    }
+    ```
 3. Ability to login
     - Route should accept the following JSON:
     ```json
@@ -74,7 +88,7 @@ Project should include routes that provide the following:
       ],
     }
     ```
-4. Ability to save location
+4. ^Ability to save location
     - Route should accept the following JSON:
     ```json
     {
@@ -83,9 +97,33 @@ Project should include routes that provide the following:
       "zipCode": int,
     }
     ```
-7. Ability to fetch saved weather [Need data structure]
-8. Ability to fetch user data [Need data structure]
-9. Ability to login [Need data structure]
-10. Ability to view saved locations [Need data structure]
-11. Ability to delete saved location [Need data structure]
-12. Ability to delete account
+    - Route does not require any return data
+5. ^Ability to delete saved location
+    - Route should accept these request parameters `userId` and `locationId`
+    - Route does not require any return data
+6. ^Ability to delete account
+    - Route should accept the request parameter `userId`
+    - Route should delete account along with all locations tied to the account
+
+Two Mongoose Models should be utlized for this project:
+- Users
+    ```json
+    {
+      "email": String,
+      "password": String,
+    }
+    ```
+- Locations
+    ```json
+    {
+      "_user": {
+          type: Schema.Types.ObjectId,
+          ref: "users",
+      },
+      "city": String,
+      "state": String,
+      "zipCode": int,
+      "lat": double,
+      "lng": double,
+    }
+    ```
